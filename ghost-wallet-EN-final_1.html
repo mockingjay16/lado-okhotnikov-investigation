@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How Lado Okhotnikov built a $300M crypto pyramid empire through proxy contracts, stolen funds, and a network of promoters. Blockchain Watch investigative report.">
+<meta property="og:title" content="The Ghost Wallet: How Lado Okhotnikov Builds an Empire of Invisible Pockets">
+<meta property="og:description" content="$300 million. Nearly a million victims. A proxy contract that lets the owner burn your tokens. Exclusive witness account from inside the scheme.">
+<meta property="og:type" content="article">
+<title>The Ghost Wallet: How Lado Okhotnikov Builds an Empire of Invisible Pockets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #111111;
+    --paper: #ffffff;
+    --paper-alt: #f7f8fc;
+    --blue: #1a56db;
+    --blue-dark: #1039a0;
+    --red: #c0392b;
+    --amber: #d97706;
+    --grey: #374151;
+    --light-grey: #6b7280;
+    --rule: #e5e7eb;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:#fff; color:#111; font-family:'Source Serif 4',Georgia,serif; font-size:18px; line-height:1.8; -webkit-font-smoothing:antialiased; }
+
+  .top-bar { background:#111; color:#fff; text-align:center; padding:10px 20px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; }
+  .top-bar span { color:#f87171; margin:0 8px; }
+
+  .masthead { border-bottom:2px solid #e5e7eb; padding:20px 40px 16px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+  .masthead-logo { font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:3px; color:#6b7280; text-transform:uppercase; }
+  .masthead-pub { font-family:'Playfair Display',serif; font-size:13px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#1a56db; }
+  .masthead-date { font-family:'IBM Plex Mono',monospace; font-size:11px; color:#6b7280; }
+
+  .breaking-bar { background:#fff7ed; border-bottom:2px solid #ea580c; padding:12px 40px; font-family:'IBM Plex Mono',monospace; font-size:12px; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .breaking-bar .bl { color:#ea580c; font-weight:600; letter-spacing:2px; text-transform:uppercase; white-space:nowrap; }
+  .breaking-bar a { color:#1a56db; }
+
+  .hero { max-width:860px; margin:48px auto 0; padding:0 24px; }
+  .hero .tag { display:inline-block; background:#1a56db; color:#fff; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; padding:4px 12px; margin-bottom:20px; }
+  .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(30px,5vw,58px); font-weight:900; line-height:1.07; color:#111; margin-bottom:24px; }
+  .hero h1 em { font-style:italic; color:#1a56db; }
+  .hero .deck { font-size:20px; font-weight:300; line-height:1.55; color:#374151; border-left:4px solid #1a56db; padding-left:20px; margin-bottom:28px; font-style:italic; }
+  .byline { display:flex; align-items:center; gap:16px; padding:14px 0; border-top:1px solid #e5e7eb; border-bottom:1px solid #e5e7eb; margin-bottom:40px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:#6b7280; flex-wrap:wrap; }
+  .byline strong { color:#1a56db; }
+
+  /* FLOW DIAGRAM */
+  .flow-diagram { background:#111; color:#d8e4f4; padding:32px 36px; margin:0 24px 48px; max-width:860px; margin-left:auto; margin-right:auto; }
+  .flow-title { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#fbbf24; margin-bottom:24px; }
+  .flow-cols { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+  .flow-col-label { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-bottom:14px; }
+  .flow-col-label.green { color:#a8d5b5; }
+  .flow-col-label.red { color:#f87171; }
+  .flow-node { padding:12px 16px; border:1px solid; font-family:'IBM Plex Mono',monospace; font-size:12px; line-height:1.5; margin-bottom:4px; }
+  .flow-node.green { border-color:#a8d5b5; color:#a8d5b5; }
+  .flow-node.gold { border-color:#fbbf24; color:#fbbf24; background:rgba(251,191,36,0.06); }
+  .flow-node.red { border-color:#f87171; color:#f87171; background:rgba(248,113,113,0.1); }
+  .flow-node.grey { border-color:#6b7280; color:#9ca3af; }
+  .flow-node .sub { font-size:10px; opacity:0.6; text-transform:uppercase; letter-spacing:1px; display:block; margin-top:4px; }
+  .flow-arrow { text-align:center; padding:3px; font-size:16px; }
+  .flow-arrow.green { color:#a8d5b5; }
+  .flow-arrow.red { color:#f87171; }
+  .flow-arrow.grey { color:#6b7280; }
+  .flow-warning { font-family:'IBM Plex Mono',monospace; font-size:11px; color:#f87171; padding:12px 16px; border:1px solid rgba(248,113,113,0.4); background:rgba(248,113,113,0.07); margin-top:20px; }
+  .flow-warning::before { content:'⚠ '; }
+  .flow-caption { font-family:'IBM Plex Mono',monospace; font-size:10px; color:rgba(255,255,255,0.25); margin-top:12px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.06); }
+
+  /* STATS */
+  .stats-box { background:#111; color:#f0f4ff; padding:32px 36px; margin:0 24px 48px; max-width:860px; margin-left:auto; margin-right:auto; }
+  .stats-title { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#fbbf24; margin-bottom:24px; }
+  .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:20px; }
+  .stat .n { font-family:'Playfair Display',serif; font-size:34px; font-weight:900; color:#f87171; line-height:1; display:block; }
+  .stat .n.blue { color:#78a8e0; }
+  .stat .n.amber { color:#fbbf24; }
+  .stat .l { font-family:'IBM Plex Mono',monospace; font-size:10px; color:rgba(255,255,255,0.5); margin-top:6px; line-height:1.4; }
+
+  /* BODY */
+  .body { max-width:680px; margin:0 auto; padding:0 24px 80px; }
+  .body p { margin-bottom:22px; font-size:18px; line-height:1.8; color:#1a1a1a; }
+  .body p:first-of-type::first-letter { font-family:'Playfair Display',serif; font-size:78px; font-weight:900; float:left; line-height:0.72; margin-right:8px; margin-top:12px; color:#1a56db; }
+
+  .sh { margin:52px 0 20px; padding-top:24px; border-top:2px solid #e5e7eb; }
+  .sh .ch { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2px; color:#1a56db; text-transform:uppercase; display:block; margin-bottom:8px; font-weight:600; }
+  .sh h2 { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; line-height:1.25; color:#111; }
+  .sh h3 { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; line-height:1.3; color:#111; margin-top:36px; margin-bottom:12px; border-top:none; padding-top:0; }
+
+  .pq { margin:36px 0; padding:24px 28px; background:#f0f4ff; border-left:5px solid #1a56db; border-radius:0 6px 6px 0; }
+  .pq blockquote { font-family:'Playfair Display',serif; font-size:21px; font-style:italic; line-height:1.5; color:#111; }
+  .pq cite { display:block; margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:#1a56db; font-style:normal; text-transform:uppercase; letter-spacing:1px; }
+
+  .ev { margin:28px 0; padding:18px 22px; background:#f8faff; border-left:4px solid #1a56db; border-radius:0 6px 6px 0; }
+  .ev .evl { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#1a56db; margin-bottom:10px; font-weight:600; }
+  .ev p { font-size:16px !important; color:#374151 !important; margin-bottom:0 !important; line-height:1.7 !important; }
+  .ev p::first-letter { all:unset !important; }
+
+  .alert { margin:32px 0; padding:20px 24px; background:#fff7ed; border-left:5px solid #ea580c; border-radius:0 6px 6px 0; }
+  .alert .al { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#ea580c; margin-bottom:10px; font-weight:600; }
+  .alert p { font-size:16px !important; color:#1a1a1a !important; margin-bottom:0 !important; line-height:1.7 !important; }
+  .alert p::first-letter { all:unset !important; }
+  .alert a { color:#1a56db; }
+
+  .tb { margin:32px 0; padding:24px 28px; border:1px solid #e5e7eb; background:#f7f8fc; border-radius:6px; position:relative; }
+  .tb .tbl { position:absolute; top:-1px; right:20px; background:#d97706; color:#fff; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; padding:4px 10px; border-radius:0 0 4px 4px; }
+  .tb h3 { font-family:'Playfair Display',serif; font-size:19px; margin-bottom:14px; color:#111; }
+  .tb p { font-size:16px !important; color:#374151; margin-bottom:12px !important; line-height:1.7 !important; }
+  .tb p::first-letter { all:unset !important; }
+  .tb code { font-family:'IBM Plex Mono',monospace; background:rgba(0,0,0,0.07); padding:2px 6px; font-size:13px; color:#1039a0; border-radius:3px; }
+  .tb ol, .tb ul { margin:8px 0 0 20px; }
+  .tb ol li, .tb ul li { font-size:16px; color:#374151; margin-bottom:8px; line-height:1.6; }
+
+  .tl { list-style:none; border-left:2px solid #e5e7eb; margin:28px 0 28px 16px; }
+  .tl li { position:relative; padding:0 0 24px 32px; font-size:16px; line-height:1.6; color:#374151; }
+  .tl li::before { content:''; position:absolute; left:-7px; top:8px; width:12px; height:12px; border-radius:50%; background:#fff; border:2px solid #1a56db; }
+  .tl li.red::before { border-color:#c0392b; }
+  .tl li strong { font-family:'IBM Plex Mono',monospace; font-size:11px; color:#1a56db; display:block; margin-bottom:4px; letter-spacing:1px; }
+  .tl li.red strong { color:#c0392b; }
+
+  .cl { margin:24px 0; padding:24px 28px; background:#f7f8fc; border-radius:6px; border:1px solid #e5e7eb; }
+  .cl h3 { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#1a56db; margin-bottom:16px; }
+  .cl ol { margin-left:20px; }
+  .cl ol li { font-size:16px; color:#374151; margin-bottom:10px; line-height:1.6; }
+
+  .orn { text-align:center; color:#1a56db; font-size:18px; margin:44px 0; letter-spacing:12px; }
+
+  .sources { max-width:680px; margin:0 auto; padding:28px 24px; border-top:2px solid #111; }
+  .sources h4 { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#6b7280; margin-bottom:16px; }
+  .sources ul { list-style:none; font-family:'IBM Plex Mono',monospace; font-size:11px; color:#6b7280; line-height:2.2; }
+  .sources ul li::before { content:'— '; color:#1a56db; }
+  .sources a { color:#1a56db; text-decoration:none; }
+  .sources a:hover { text-decoration:underline; }
+
+  footer { background:#111; color:#9ca3af; text-align:center; padding:28px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px; line-height:2; }
+  footer strong { color:#fbbf24; }
+  footer a { color:#78a8e0; }
+
+  @media(max-width:640px){
+    .masthead{flex-direction:column;text-align:center;padding:16px;gap:6px;}
+    .breaking-bar{padding:12px 16px;font-size:11px;}
+    .hero,.body,.sources{padding-left:16px;padding-right:16px;}
+    .stats-box,.flow-diagram{margin:0 16px 40px;padding:24px 20px;}
+    .stats-grid{grid-template-columns:1fr 1fr;}
+    .flow-cols{grid-template-columns:1fr;}
+    .body p{font-size:17px;}
+    .sh h2{font-size:22px;}
+    .pq blockquote{font-size:18px;}
+    .hero h1{font-size:28px;}
+    .hero .deck{font-size:17px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">Special Investigation<span>•</span>Cryptocurrency & Organised Fraud<span>•</span>2025</div>
+
+<div class="masthead">
+  <div class="masthead-logo">Blockchain Watch</div>
+  <div class="masthead-pub">Investigation</div>
+  <div class="masthead-date">May 2025</div>
+</div>
+
+<div class="hero">
+  <div class="tag">Special Investigation</div>
+  <h1>The Ghost Wallet:<br><em>How Lado Okhotnikov Builds an Empire of Invisible Pockets</em></h1>
+  <p class="deck">Millions of investors around the world believe their money is working inside a "transparent" blockchain system. In reality, funds settle in proxy contracts whose existence an ordinary participant will never learn about. This is the story of how one man has been repainting the same fraudulent scheme in new colours for seven years running — and finding new victims every time.</p>
+  <div class="byline">
+    <span>By <strong>Blockchain Watch Editorial</strong> | With data from ICIJ, TRM Labs, Cornell Tech</span>
+    <span style="margin-left:auto;">May 2025</span>
+  </div>
+</div>
+
+<!-- FLOW DIAGRAM -->
+<div class="flow-diagram">
+  <div class="flow-title">// Fund Flow: What Okhotnikov Claims vs. What Actually Happens</div>
+  <div class="flow-cols">
+    <div>
+      <div class="flow-col-label green">As publicly claimed</div>
+      <div class="flow-node green">Investor deposits funds<span class="sub">USDT / MATIC / DAI</span></div>
+      <div class="flow-arrow green">↓</div>
+      <div class="flow-node gold">Public smart contract<span class="sub">"100% transparent, no intermediaries"</span></div>
+      <div class="flow-arrow green">↓</div>
+      <div class="flow-node green">Personal account<span class="sub">Credits, bonuses, withdrawals</span></div>
+    </div>
+    <div>
+      <div class="flow-col-label red">What actually happens</div>
+      <div class="flow-node green">Investor deposits funds<span class="sub">USDT / MATIC / DAI</span></div>
+      <div class="flow-arrow" style="color:#fbbf24;">↓</div>
+      <div class="flow-node gold">Façade contract (public)<span class="sub">Visible to all in blockchain explorers</span></div>
+      <div class="flow-arrow red">↓</div>
+      <div class="flow-node red">⚡ Proxy contract #1<span class="sub">Redirection & founders' fees</span></div>
+      <div class="flow-arrow red">↓</div>
+      <div class="flow-node red" style="opacity:0.8;">⚡ Proxy contract #2<span class="sub">"Implementation" — swapped without notice</span></div>
+      <div class="flow-arrow grey">↓</div>
+      <div class="flow-node grey">Founders' wallets<span class="sub">$29M+ documented (ICIJ, 2024–25)</span></div>
+    </div>
+  </div>
+  <div class="flow-warning">The proxy contract can be replaced at any moment, redirecting all funds to the owner's wallet. Blockchain explorers show only the current version of the code — the history of changes is not displayed. An ordinary participant never sees this.</div>
+  <div class="flow-caption">Diagram based on smart contract analysis by Stacey Ferris (Virginia Tech), Ari Juels (Cornell Tech), TRM Labs data, and ICIJ The Coin Laundry materials, November 2025.</div>
+</div>
+
+<!-- STATS -->
+<div class="stats-box">
+  <div class="stats-title">// Scale of the Operation: Key Figures</div>
+  <div class="stats-grid">
+    <div class="stat"><span class="n">$1B+</span><span class="l">Total investor funds across all schemes (TRM Labs)</span></div>
+    <div class="stat"><span class="n">$340M</span><span class="l">Amount in DOJ indictment — Forsage case (Feb 2023)</span></div>
+    <div class="stat"><span class="n amber">$574M</span><span class="l">Meta Force investment in year one (TRM Labs)</span></div>
+    <div class="stat"><span class="n">88%</span><span class="l">Forsage participants who suffered financial losses (Cornell Tech, 2021)</span></div>
+    <div class="stat"><span class="n amber">16+</span><span class="l">MLM schemes participated in or launched by Okhotnikov (ICIJ)</span></div>
+    <div class="stat"><span class="n blue">$29M</span><span class="l">Crypto passing through one Okhotnikov wallet in a year (ICIJ, 2024–25)</span></div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="body">
+
+  <p>When Vladimir "Lado" Okhotnikov announced the launch of Forsage in 2019, he promised investors something revolutionary: a system with no owners, no administrators, no possibility of anyone changing anything in another's interests. "You can become millionaires," he told his YouTube audiences. Six years have passed. Okhotnikov is hiding in Dubai with an international arrest warrant, and the number of his victims runs into the millions across four continents.</p>
+
+  <p>This investigation is devoted not only to Okhotnikov himself — his biography has already been sufficiently documented by American prosecutors, Georgian courts, and ICIJ journalists. What interests us is the specific technical mechanism that almost no one discusses openly: <strong>proxy contracts</strong> — invisible intermediaries through which investor funds are intercepted before they ever reach a participant's personal account. They are precisely what makes Okhotnikov's scheme not merely a financial pyramid, but a pyramid with an invisible floor.</p>
+
+  <div class="sh"><span class="ch">Chapter I</span><h2>The Man Who Invented the "Transparent" Trap</h2></div>
+
+  <p>Vladimir Okhotnikov was born in Soviet Kazakhstan and grew up in Russia. After a failed attempt to break into the world of cinema in the early 2000s, he immersed himself in multi-level marketing — an industry experiencing a boom in Russia at the time, feeding on the hopes of millions who had not found their footing in the post-Soviet economy.</p>
+
+  <p>By the time Forsage launched in 2020, he had at least 16 MLM schemes of various scales behind him. But blockchain gave him something none of those previous projects had: the illusion of mathematical honesty. Smart contracts on the Ethereum blockchain exist in the public domain — their code can be checked, transactions tracked. That is what Okhotnikov built his rhetoric on.</p>
+
+  <p><em>"There are no admins, no bosses who can use their power to change something in their own favour,"</em> he claimed. It was a lie — architecturally embedded in the contract code itself.</p>
+
+  <div class="sh"><span class="ch">Chapter II</span><h2>The Proxy Contract: The Invisible Pocket in Your Wallet</h2></div>
+
+  <div class="pq">
+    <blockquote>"People hear about acquaintances getting rich from crypto, and it seems like another such opportunity. It's just not immediately obvious how tilted the playing field is."</blockquote>
+    <cite>— Ari Juels, Professor of Computer Science, Cornell Tech</cite>
+  </div>
+
+  <p>The technical instrument underpinning Okhotnikov's later schemes is called a proxy contract. Most investors have never heard the term. That is a pity — this is precisely where their money disappears.</p>
+
+  <p>In the case of Forsage, the SEC documented a specific instance of such manipulation: in the xGold contract, a portion of investor funds was automatically redirected to a wallet with no connection to any Forsage account. This directly contradicted Okhotnikov's public claim that "all funds are paid to participants."</p>
+
+  <p>In Meta Whale — the latest known iteration of the scheme, launched in February 2025 — the structure became even more concentrated. Analysis conducted by Stacey Ferris at ICIJ's request found that the top 10 holders of the CES token control over 90% of the entire supply. Two wallets hold more than 80%. This is not a decentralised system. It is a centralised extraction machine in a blockchain wrapper.</p>
+
+  <div class="tb">
+    <div class="tbl">Technical Explainer</div>
+    <h3>What Is a Proxy Contract — and Why It Is Dangerous</h3>
+    <p>A standard smart contract cannot be modified after it is published on the blockchain — this is one of the technology's key properties. A proxy contract bypasses this limitation: it acts as a "shell" that delegates execution to a separate <code>implementation</code> contract. That inner contract can be replaced by the owner at any moment.</p>
+    <p>In practice this means: the user sees one contract (the façade) in the blockchain explorer, interacts with it, trusts it — but the actual execution logic can be swapped at any moment. A new implementation can redirect all incoming funds to the owner's wallet, then restore the previous code. Blockchain explorers show only the <em>current</em> version of the code. The history of changes — as a rule — does not.</p>
+    <p>This is precisely what Stacey Ferris, a certified fraud examiner from Virginia Tech, found when analysing Meta Whale's contracts: the scheme was "literally built for a rug pull" — a managed collapse with fund extraction.</p>
+  </div>
+
+  <div class="ev">
+    <div class="evl">📄 Documented Fact</div>
+    <p>The Slovenian financial regulator officially determined in October 2025 that Forsage, Meta Force, Holiverse and Meta Whale are one and the same structure operating under different names as part of "international fraud." Vietnam's cyber police shut down Meta Whale operations in December 2025 and arrested three promoters.</p>
+  </div>
+
+  <div class="sh"><span class="ch">Chapter III</span><h2>Seven Iterations of One Pyramid</h2></div>
+
+  <p>None of Okhotnikov's schemes "died" on their own — each was shut down by him on the same script: first came reports of "technical problems" with payments, then claims of "sabotage" by "enemies," then a relaunch under a new brand. Investors who lost money in the previous iteration often reinvested in the next one, hoping to recover their losses.</p>
+
+  <ul class="tl">
+    <li><strong>2019–2022 — Forsage</strong> First crypto pyramid on Ethereum. More than 1 million users. $240M processed through the x3/x4 contract alone in 2020. 88% of participants lost money. The most transacted smart contract on Ethereum at peak.</li>
+    <li><strong>2020–2021 — Forsage BUSD, Forsage Tron, Forsage BSC</strong> Parallel iterations on other blockchains (Tron, Binance Smart Chain). An attempt to reach audiences with lower fees.</li>
+    <li><strong>2022–2024 — Meta Force</strong> Sixth Forsage reboot. $574M raised in year one. Russia's Central Bank issued a pyramid scheme warning. Chinese regulators classified it as "fraud."</li>
+    <li><strong>2024 — Holiverse</strong> Meta Force rebrand after "sabotage" claims. Includes a "metaverse," NFTs, biotechnology and a cinematic universe with Kevin Spacey. 2,078,213 registered participants by November 2024 (platform data).</li>
+    <li class="red"><strong>February 2025 — Meta Whale</strong> Latest known iteration. Token WhaleBit (CES). 40,000 active monthly users. 90%+ of tokens held by the top 10 wallets. Proxy contract structure "literally built for a rug pull" — Virginia Tech conclusion.</li>
+  </ul>
+
+  <div class="sh"><span class="ch">Chapter IV</span><h2>What the Investor Sees — and What Is Hidden from Them</h2></div>
+
+  <p>The most destructive aspect of the scheme is not its greed but its design. From the very start, Okhotnikov chose the narrative of radical transparency: the blockchain does not lie, the code is open, everything is verifiable. This is true — to the extent that it works against the investor.</p>
+
+  <p>An ordinary participant opens the platform, sees a personal account interface with a balance, transaction history, credits. They can check the public smart contract address in Etherscan or Polygonscan. The code is really there. But without expertise in Solidity — the programming language of smart contracts — understanding whether a contract is a proxy shell is practically impossible.</p>
+
+  <div class="pq">
+    <blockquote>"Smart contracts allow a very deceptive impression to be created, because the scheme is in principle entirely transparent. It is simply not at all obvious how tilted the playing field is."</blockquote>
+    <cite>— Ari Juels, Cornell Tech</cite>
+  </div>
+
+  <p>The Cornell Tech team noted that fully understanding Forsage's code took a group of professional researchers <em>weeks</em>. An ordinary investor from Nigeria, India or Vietnam who came to the platform after watching a YouTube video in their native language has neither the tools nor the time for such analysis.</p>
+
+  <p>A concrete example: a participant deposits 100 USDT into a Meta Whale contract. The transaction confirms on the blockchain — both they and any outside observer can see this. The personal account shows a balance credit. But between the line "transaction confirmed" and the line "funds credited to your account" there exists a layer of proxy logic inaccessible through the platform's standard interface. A portion of funds at that moment has already been redistributed: to the founders, to "upstreams" — those higher up in the referral chain. Less reaches your actual balance than you deposited.</p>
+
+  <p>And if at some point the contract owner decides to swap the implementation, the next payment will go not into the distribution system but directly to their wallet. This is the rug pull — "pulling the rug." Externally it will look like a "technical glitch" or a "hacker attack."</p>
+
+  <div class="sh"><span class="ch">Chapter V</span><h2>The Human Network: The Team That Sells the Dream</h2></div>
+
+  <p>Okhotnikov long ago understood that technical schemes need a human face. To attract investors he built a sprawling network of promoters — "leaders" who are paid to recruit new participants. Promoters work through Telegram channels, YouTube, Instagram, live webinars in local languages.</p>
+
+  <p>A separate role is played by <strong>Elvira Gavrilova (Paterson)</strong> — a Ukrainian PR specialist who became the chief public face of Okhotnikov's global expansion. Her company <strong>Elledgy Media</strong> organised events in the United States, France, Italy, India and the UAE. More than <strong>$4 million</strong> passed through it over two years — part in cash, part in cryptocurrency. A Portuguese bank initiated a review of a suspicious transaction — a cash deposit of <strong>$312,000</strong> — and the country's authorities opened an investigation into Elledgy for suspected money laundering.</p>
+
+  <div class="ev">
+    <div class="evl">📄 Documented Fact</div>
+    <p>Elledgy Media paid approximately $350,000 to Maye Musk (Elon Musk's mother) for appearances at Holiverse promotional events. The company also paid at least $1.2 million to produce the film "Holiguards Saga — The Portal of Force" starring Kevin Spacey. All of these expenditures are documented in bank statements reviewed by ICIJ.</p>
+  </div>
+
+  <p>The scheme is clear: famous names create the illusion of legitimacy. An investor from Mumbai or Lagos sees Hollywood and Bollywood stars and well-known entrepreneurs on a poster — and concludes that a serious project stands before them. Neither Spacey nor the other actors publicly commented on Okhotnikov's connection to criminal proceedings.</p>
+
+  <div class="sh"><span class="ch">Chapter VI</span><h2>Dubai as the Operational Base of Global Fraud</h2></div>
+
+  <p>After Georgian banks began asking questions in 2022 about the origin of more than $1.1 million, Okhotnikov handed a suitcase containing computers, a phone and memory cards to an intermediary who took them to Turkey. Okhotnikov himself officially left to shoot an advertisement — and ended up in Dubai.</p>
+
+  <p>Dubai has become the informal headquarters of global crypto crime. Jonathan Levy, a lawyer helping OneCoin victims recover funds, calls it "the world's centre for pyramids, fraud, MLM and crypto laundering." Limited extradition treaties, opaque corporate law and the absence of real regulation of decentralised platforms make the UAE a practically safe haven for those with international arrest warrants.</p>
+
+  <p>It was from here that Okhotnikov held his gala event on Palm Jumeirah in December 2024, where Keanu Reeves played bass guitar with his band while Okhotnikov in a black tuxedo embraced Gavrilova under fireworks. The arrest warrant did not prevent the party, nor the investment pitch to 40,000 new Meta Whale users.</p>
+
+  <div class="orn">— ◆ —</div>
+
+  <div class="sh"><span class="ch">Chapter VII</span><h2>How to Recognise the Scheme: Signs of Proxy Fraud</h2></div>
+
+  <p>Schemes built on proxy contracts are difficult to recognise without technical expertise — that is exactly what their creators count on. However, there are a number of signs that should alert any prospective investor.</p>
+
+  <div class="cl">
+    <h3>// Investor Checklist: What to Look for Before Investing</h3>
+    <ol>
+      <li><strong>"Decentralised" + mandatory recruitment.</strong> If a platform calls itself "fully decentralised" but the only real way to earn is to recruit new people, it is a pyramid, regardless of the technology.</li>
+      <li><strong>Check the contract type.</strong> In Etherscan/Polygonscan there is a "Contract" tab. If it says "Proxy," find the link to the Implementation contract. If the implementation can change — that is a red flag.</li>
+      <li><strong>Token concentration.</strong> If 10 wallets hold 90% of the supply — this is not a decentralised project. It is a managed rug pull on command of the owner.</li>
+      <li><strong>Rebranding history.</strong> A project that has already changed its name more than once after "technical problems" or "attacks" will most likely continue this practice.</li>
+      <li><strong>Regulatory warnings.</strong> Before investing, check the websites of the SEC (USA), the Bank of Russia, and regulators in Slovenia, France and Germany — they have public databases of warnings about financial pyramids.</li>
+    </ol>
+  </div>
+
+  <div class="sh"><span class="ch">Breaking Update — 12 May 2026</span><h2>Olena Oblamska, aka "Lola Ferrari": The First Domino Falls</h2></div>
+
+  <div class="alert">
+    <div class="al">🔴 Breaking — DOJ, 12 May 2026</div>
+    <p><strong>Olena Oblamska</strong>, 42, Ukrainian national — known in the Forsage community as <strong>"Lola Ferrari"</strong> — was extradited from Thailand to the United States to face federal conspiracy charges for her role in the $340M Forsage Ponzi scheme. <a href="https://www.justice.gov/usao-or/pr/ukrainian-national-extradited-thailand-face-conspiracy-charges">Official DOJ press release →</a></p>
+  </div>
+
+  <p>Thailand is not Dubai. And that is the crucial difference. If co-conspirators of the scheme are being extradited from countries considered "quiet havens" for fugitives from justice, then the very concept of untouchability on which Okhotnikov apparently relies is beginning to crack.</p>
+
+  <p>For context: the U.S. Department of Justice brought charges against the founders of Forsage back in 2022. Since then the international law enforcement network has been methodically tightening the circle. The extradition from Thailand is not a coincidence or an exception. It is a demonstration that geographical distance has ceased to be protection.</p>
+
+  <div class="pq">
+    <blockquote>"The next step is not far off. Okhotnikov's own extradition is a question of time, not of fundamental possibility."</blockquote>
+    <cite>— Blockchain Watch Editorial, May 2026</cite>
+  </div>
+
+  <p>Dubai, where Okhotnikov is reportedly based in recent years, has concluded a mutual legal assistance agreement with the United States. Extradition precedents from the UAE exist — and their number is growing. The international arrest warrant is active. Interpol is engaged. Every new arrest in the Forsage chain is another interrogation, another testimony, another thread leading upward.</p>
+
+  <p>Those who invested money in Forsage, Meta Force, Holiverse or Meta Whale and have still not received it back can take one practical action right now: record all transactions, save wallet addresses and screenshots. When the case reaches court — and it will — this will be the evidentiary record.</p>
+
+  <div class="sh"><span class="ch">Conclusion</span><h2>The Next Iteration Is Already Under Way</h2></div>
+
+  <p>In March 2024 a Georgian court sentenced Okhotnikov in absentia to 10 years' imprisonment. In the United States he faces charges carrying a maximum sentence of 20 years. His assets in Georgia — two apartments with a swimming pool, a Lexus, five parking spaces — have been confiscated. The international arrest warrant is active.</p>
+
+  <p>And despite all of this — in September 2025, $29 million passed through one of his crypto wallets. Meta Whale was operating. New webinars were drawing audiences in India, Vietnam and Nigeria. Ten "Warriors of Light" — top promoters — flew to Dubai for a banquet with robots and a DJ.</p>
+
+  <div class="pq">
+    <blockquote>"When you're earning millions, possibly through criminal activity, you obviously want to be visible and enjoy it. What's the point of hiding?"</blockquote>
+    <cite>— Graham Barrow, Financial Crime Expert, Former Banker</cite>
+  </div>
+
+  <p>Professor Ari Juels of Cornell Tech, who studied Forsage back in 2021, put the core problem most precisely: "The people who launched the scheme, developed and advertised it, clearly bear responsibility. It is simply very difficult to hold them to it."</p>
+
+  <p>The blockchain does not lie. But the person who writes the code that lives on the blockchain — very much can.</p>
+
+  <p>The next iteration is already under way. It will have a different name, use a different blockchain, promise a different metaverse. The proxy contract will remain the same.</p>
+
+  <div class="orn">— ◆ —</div>
+
+  <div class="sh"><span class="ch">Chapter VIII — Exclusive</span><h2>The Voice from Mumbai: A Leader with a Team of Twenty Tells What Happened</h2></div>
+
+  <p>Our source is a network leader from Mumbai who, over years of work in Okhotnikov's projects, built a team of twenty similar leaders. He went through the full cycle: from Forsage to Meta Force, from the first product Tactile to the collapse of UniteVerse. At the time of his exit from the project — October 2025 — his portfolio amounted to approximately 36,000 MFS tokens. At the then-rate of $2.77 this was valued at approximately $100,000. Today, at a rate of around $0.70, the same portfolio is worth around $27,000 — and remains frozen in vesting. He agreed to speak because he believes the market deserves to know the truth — and because, in his words, there is nothing left to lose.</p>
+
+  <p><em>His story is not unique. It is typical. That is precisely why it matters.</em></p>
+
+  <div class="sh"><h3>Chapter IX — Tactile and Royalty NFT: How Trust Was Built — and How It Crumbled</h3></div>
+
+  <p>By the time Meta Force launched, Mumbai leaders already had Forsage experience behind them. The transition was natural: Okhotnikov provided strong media support for the new project, and the community built around the previous scheme followed. The first product of the new cycle was called <strong>Tactile</strong> — a classic matrix with 100% network distribution of incoming funds. As an additional incentive, bonus SFC tokens were introduced: buy access to a level for five dollars — receive five tokens credited to your account.</p>
+
+  <p>The launch went wrong. Part of the funds did not reach their recipients — went, as the source puts it, "nobody knows where." Leaders began complaining in chats. They were heard. Okhotnikov's team fixed the bug over several months and credited the missing amounts. "We saw the team working. They did not abandon us. They listened to the community's voice and fixed the errors," the source recalls. It was precisely this episode, he says, that laid the foundation of trust on which everything that followed rested.</p>
+
+  <div class="ev">
+    <div class="evl">📣 Source Testimony</div>
+    <p>"The only thing was the start was broken — errors appeared, part of the money leaders and regular users didn't receive. When we started complaining in chats, we were heard. They really fixed it — though we waited a very long time. For four months they credited back funds we hadn't received. We already saw some work from the team. Our trust only grew stronger."</p>
+  </div>
+
+  <p>Approximately six months after Tactile's launch came the next product — <strong>Royalty NFT</strong>. It was positioned as a passive income instrument: the most active community members could convert accumulated SFC tokens into NFTs of various levels and receive monthly payouts from company revenue. The higher the NFT level — the greater the passive income. An NFT of the first level, at a "upgrade" cost of around $3,500, was supposed to be worth the same on the market.</p>
+
+  <p>The market decided otherwise. When trading opened on OpenSea, it turned out that someone had already created thousands of NFTs using a logic flaw in the system: multi-accounts with hundreds of registered accounts were generating SFC tokens on an industrial scale, which were then used to mint NFTs and immediately dumped on the market. The market choked on supply. The price of a unit collapsed from the planned $3,500 to $10–30.</p>
+
+  <p>The team responded by introducing an NFT reputation system. Based on an internal analysis, each NFT was assigned a "cleanliness" score from 0 to 100 percent — depending on what tokens it had been made from. NFTs that included tokens from multi-accounts or bought on OpenSea from dubious sellers received reduced reputation. The logic sounded reasonable. But in practice it hit legitimate participants too.</p>
+
+  <div class="ev">
+    <div class="evl">📣 Source Testimony</div>
+    <p>"The third-level NFT I had got a reputation of 49%. I wrote to tech support. They replied that I had apparently bought NFTs on OpenSea from hackers, mixed them with mine and obtained a higher-level NFT. So the reputation dropped. But I didn't understand what mathematical formulas and rules they based these calculations on. Nobody explained. Some people had 0% reputation, some 100% — it was all different for everyone."</p>
+  </div>
+
+  <p>The source and his team did not despair. They remembered how the team had fixed the glitch at Tactile's launch, and waited for an equivalent resolution. It did not come. Instead, a new product arrived.</p>
+
+  <div class="sh"><h3>Chapter X — UniteVerse: $100,000 on Paper — and Why It's Impossible to Retrieve</h3></div>
+
+  <p>Spring 2023 brought <strong>UniteVerse</strong> — and it, in the source's words, "everyone loved" unconditionally. The product was built around a matrix five lines deep with sixty-two people. The key innovation: in addition to personal referrals, participants from the global tree were automatically placed into your matrix. This created real, not merely declared, passive income — money came from people the participant had never seen.</p>
+
+  <p>The token mechanic also operated in parallel. The project's main token — <strong>MFS</strong> — was sold in blocks with the price doubling at each subsequent level. Start: 25 cents. After one year: $2.77. All activations and credits within the matrix occurred in MFS. A participant could choose what to receive their income in: the stablecoin DAI or the MFS token. The source chose MFS. "We believed in the project. Why spend money buying the token when you can receive it free through the referral structure," he explains the logic of that time.</p>
+
+  <p>UniteVerse also distributed bonus tokens — <strong>Energy</strong>. As administrators explained, these were the equivalent of SFC from the previous product, Tactile. Energy tokens could be used to "upgrade" next-generation NFTs — and these NFTs, unlike the previous ones, had 100% reputation from day one. The Indian community received the project enthusiastically. "The company positioned itself as a fintech project building the first metaverse that would completely copy real life with real financial instruments — employment, trading in land and property. There were no doubts," the source says.</p>
+
+  <div class="tb">
+    <div class="tbl">The Trap Mechanics</div>
+    <h3>Why MFS Tokens Were Impossible to Withdraw</h3>
+    <p>While UniteVerse was gaining momentum, the MFS token for a time traded freely on the internal exchange. At one point its price shot above $15. The source managed to sell a portion of tokens not subject to vesting — precisely at the peak. This partially covered the investment.</p>
+    <p>Then Okhotnikov announced the introduction of vesting. And here — a critical detail the source emphasises specifically: participants were not warned about vesting in advance. The terms were disclosed after the fact — after people had already bought tokens and built their expectations. They were presented with a fait accompli.</p>
+    <p>The choice of lock-up horizon — from one month to five years — was a choice between bad and very bad: a short vesting meant losing 30–50% of tokens to long-term holders. Long-term holders received a bonus of up to +20% on their deposit. About 90% of tokens went into vesting; only 10% remained free.</p>
+  </div>
+
+  <p>By the time of exit from the project, the source had approximately 36,000 MFS tokens in his account. At the then-rate of $2.77 — around $100,000. Today, at a rate of $0.70, the same portfolio is worth approximately $27,000. More than 90% is in vesting. He cannot access it to this day.</p>
+
+  <div class="pq">
+    <blockquote>"My 36,000 MFS at the $2.77 rate were worth about $100,000. Now, at $0.70 — that's $27,000. And still frozen. We weren't even warned about vesting in advance — they just presented it as a fait accompli. If I had known, I would have chosen to receive income in DAI so I could withdraw it."</blockquote>
+    <cite>— Mumbai Leader, Blockchain Watch interview, May 2026</cite>
+  </div>
+
+  <div class="sh"><h3>Chapter XI — Rebranding After Rebranding: How Okhotnikov Changed Names Instead of Products</h3></div>
+
+  <p>After closing MFS token sales and announcing an imminent listing on major exchanges — Bybit and OKX — the community was in a state the source describes as "anticipation." Test promotional videos of the metaverse were being shown, beta testing opened: participants could enter and personally walk around the environment the developers had created. Listing seemed like a matter of the nearest months.</p>
+
+  <p>Instead: renamings began. First Meta Force became <strong>Holiverse</strong>. In parallel, the HoliVita cosmetics line launched — sold through blockchain, buyers promised physical delivery of boxes. The boxes did not arrive. Then Holiverse became <strong>Meta Whale</strong>. The MFS token was renamed <strong>CES</strong> in the course of yet another fork.</p>
+
+  <p>This is an important moment to which the source draws particular attention: with every token fork, some holders did not receive new tokens in their wallets. "I saw people writing that after the latest CES token forks they hadn't received CES in their wallets. Too many strange and unclear situations with investors," he says. These episodes — which externally look like technical glitches — became his signal to exit.</p>
+
+  <div class="sh"><h3>Chapter XII — The Collapse: Site Down, Withdrawals Blocked, Okhotnikov Blames Hackers</h3></div>
+
+  <p>At some point the site simply stopped working. Problems with withdrawing funds from internal accounts followed. Okhotnikov came out with an announcement about "minor malfunctions." Sometime later — with an announcement about a hacker attack and "sabotage within the company." Funds, he said, would be reimbursed. Just wait until a new development team restores the system.</p>
+
+  <p>"There was nothing left for us to do but sit and wait for the system to be restored. Because everything that had been close — it all suddenly collapsed. There was no working site, no listing, no launch of new products," the source describes this period.</p>
+
+  <p>In the end only the first programme — Tactile — was restored. Royalty NFTs formally exist in participants' wallets, but passive income from them is not accruing. UniteVerse was never restored. A listing on MEXC did take place — but it was the only "victory" of that period, and it changed nothing for those whose tokens remain in vesting.</p>
+
+  <div class="ev">
+    <div class="evl">📄 Outcome for the Source's Team</div>
+    <p>In October 2025 the Mumbai team made the decision to leave the project entirely. "Nothing was happening there, nothing new. We need to earn money, feed our families," he says. The team switched to Bitcoin mining. The announced Boost product was never launched. Vesting funds remain inaccessible.</p>
+  </div>
+
+  <div class="sh"><h3>Chapter XIII — The Contract That Allows Everything: mint(), burn() and the Right to Dispose of What Is Others'</h3></div>
+
+  <p>The Mumbai leader's story coincides with what the editorial team knows from other sources about the technical architecture of Okhotnikov's projects. The new smart contract deployed during restructuring is a proxy — and it has not been verified. Its source code is not available for public inspection. According to information in our editorial possession, the architecture of this contract grants owners the right to emit new tokens and to destroy tokens in the balance of any user without their knowledge or consent.</p>
+
+  <div class="tb">
+    <div class="tbl">Critical Fact</div>
+    <h3>Mint + Burn: When Your Tokens Do Not Belong to You</h3>
+    <p>The <code>mint()</code> and <code>burn()</code> functions in a smart contract allow respectively the creation of new tokens and the destruction of existing ones — in the balance of any address. If both functions are available without any restrictions to the owner of an unverified contract, the balance of any participant can be zeroed unilaterally, and the token's supply can be inflated arbitrarily, instantly devaluing already-purchased assets.</p>
+    <p>It is precisely this architecture that explains the episodes the Mumbai leader describes: the tokens that were not credited to holders after the fork did not disappear. They could have been redirected — to wherever the contract owner decided to send them. The blockchain records this movement. You just need to know where to look.</p>
+  </div>
+
+  <div class="sh"><span class="ch">Conclusion</span><h2>The Blockchain Remembers Everything</h2></div>
+
+  <p>We shared our source's testimony with independent blockchain analysts. Their conclusion is unambiguous: the wallets the informant describes exist. The transactions on the amounts he names are recorded in the blockchain. Token forks, holder lockouts, ownership changes in contracts — all of this is visible in public explorers. You just need to know where to look.</p>
+
+  <p>Ari Juels of Cornell Tech, who studied Forsage back in 2021, said in our previous report: "The people who launched the scheme, developed and advertised it, clearly bear responsibility. It is simply very difficult to hold them to it." The Mumbai leader adds his own comment: "There are too many strange situations with investors. In such a situation we of course left the project — because we bear responsibility to ourselves, to our leaders, to our community."</p>
+
+  <p>The next iteration is already under way. It will have a different name, use a different blockchain, promise a different metaverse. The proxy contract will remain the same. And a million people will each deposit three hundred dollars — because the blockchain does not lie. But the person who writes the code — very much can.</p>
+
+</div>
+
+<div class="sources">
+  <h4>// Sources & Methodology</h4>
+  <ul>
+    <li>ICIJ, "The Coin Laundry: The Russian crypto guru's Hollywood gambit," November 2025</li>
+    <li>ICIJ, "Elite Portuguese investigative unit to probe Spacey movie producer," January 2026</li>
+    <li>U.S. Department of Justice, Forsage indictment, February 2023, District of Oregon</li>
+    <li>U.S. Securities and Exchange Commission, civil complaint against Forsage founders, August 2022</li>
+    <li>Juels, A. et al., Cornell Tech, "An Analysis of the Forsage Smart Contract Pyramid Scheme," 2021</li>
+    <li>TRM Labs, "The Illicit Crypto Ecosystem Report," 2022</li>
+    <li>Ferris, S., Virginia Tech — Meta Whale smart contract analysis, 2025 (cited via ICIJ)</li>
+    <li>Studio Monitor (Georgia) — criminal case materials, Georgian court 2024</li>
+    <li>Slovenian Financial Agency (A-TVP), public warning, October 2025</li>
+    <li>BehindMLM — Okhotnikov project chronology, 2020–2025</li>
+    <li>CoinDesk / Nasdaq — "How to Stop Forsage, Meta Force and Other Smart Contract Pyramid Schemes," August 2022</li>
+    <li>On-chain data: Polygonscan, Etherscan, CoinGecko</li>
+    <li>U.S. Department of Justice, USAO District of Oregon — <a href="https://www.justice.gov/usao-or/pr/ukrainian-national-extradited-thailand-face-conspiracy-charges">"Ukrainian National Extradited from Thailand to Face Conspiracy Charges,"</a> 12 May 2026</li>
+    <li>Exclusive interview: Mumbai network leader (anonymous source), Blockchain Watch, May 2026 — verified by independent blockchain analysts</li>
+
+  </ul>
+</div>
+
+<footer>
+  <strong>Blockchain Watch</strong> — Independent investigative publication on cryptocurrency schemes and digital finance.<br>
+  Material prepared on the basis of public court documents, regulatory decisions, and ICIJ journalistic investigations.<br>
+  All persons mentioned are presumed innocent until conviction. Okhotnikov denies all charges.<br>
+  <a href="https://www.justice.gov/usao-or/pr/ukrainian-national-extradited-thailand-face-conspiracy-charges">DOJ Extradition Press Release</a> · <a href="https://www.icij.org/investigations/coin-laundry/">ICIJ Investigation</a>
+</footer>
+
+</body>
+</html>
